@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Pedro</title>
+  <style>
+    body {
+      font-family: "Courier New", Courier, monospace;
+      background: black;
+      color: #00ff00;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    h1, h2 {
+      text-shadow: 0 0 10px #00ff00;
+      animation: glow 2s infinite alternate;
+    }
+
+    p {
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    #passwordScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    #passwordScreen input {
+      width: 200px;
+      text-align: center;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #00ff00;
+      background: black;
+      color: #00ff00;
+    }
+
+    #passwordScreen button {
+      padding: 10px 20px;
+      background: black;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      cursor: pointer;
+    }
+
+    #loginArea, #dataArea, #supportArea {
+      display: none;
+      padding: 20px;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      text-shadow: 0 0 5px #00ff00;
+      position: relative;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: black;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #00ff00;
+      color: black;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      background: black;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      margin: 10px 0;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tela de senha -->
+  <div id="passwordScreen">
+    <h1>Digite a senha para acessar</h1>
+    <input type="password" id="sitePassword" placeholder="Senha">
+    <button onclick="validatePassword()">Entrar</button>
+  </div>
+
+  <!-- Conteúdo do site -->
+  <div id="loginArea">
+    <h1>Bem-vindo(a) ao Painel do Pedro!</h1>
+    <p>Este site foi criado para ser usado para o bem. Use com responsabilidade!</p>
+    <button onclick="showSupport()">Ir para Suporte</button>
+    <button onclick="logout()">Sair</button>
+  </div>
+
+  <!-- Área de suporte -->
+  <div id="supportArea">
+    <h2>Suporte</h2>
+    <p>Envie sua dúvida ou mensagem:</p>
+    <textarea id="supportMessage" placeholder="Digite sua mensagem aqui..."></textarea>
+    <button onclick="sendSupportMessage()">Enviar</button>
+    <button onclick="backToLogin()">Voltar</button>
+  </div>
+
+  <footer>
+    © 2024 Pedro - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function validatePassword() {
+      const password = document.getElementById("sitePassword").value;
+      if (password === "1058") {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("loginArea").style.display = "block";
+      } else {
+        alert("Senha incorreta!");
+      }
+    }
+
+    function showSupport() {
+      document.getElementById("loginArea").style.display = "none";
+      document.getElementById("supportArea").style.display = "block";
+    }
+
+    function backToLogin() {
+      document.getElementById("supportArea").style.display = "none";
+      document.getElementById("loginArea").style.display = "block";
+    }
+
+    function sendSupportMessage() {
+      const message = document.getElementById("supportMessage").value;
+      if (message.trim() === "") {
+        alert("Por favor, digite uma mensagem antes de enviar.");
+      } else {
+        alert("Mensagem enviada com sucesso! Em breve você receberá uma resposta.");
+        document.getElementById("supportMessage").value = "";
+      }
+    }
+
+    function logout() {
+      document.getElementById("loginArea").style.display = "none";
+      document.getElementById("passwordScreen").style.display = "flex";
+    }
+  </script>
+</body>
+</html>
